@@ -11,7 +11,7 @@
 * 회원정보 띄우기
 * 즐겨찾기 
 * mapbox 
-    * API
+    * SDK 설치 및 API 발급
     * 지도
     * 길찾기
     * 네비게이션
@@ -426,10 +426,12 @@ public void onMark(View view) {
 
 
 <!-- mapbox API 발급 -->
-# Mapbox SDK 설치
+# Mapbox 
 mapbox는 구글맵에 대항하는 지도 서비스이다.<br>
 GUIDE DOG의 지도 및 길찾기 서비스도 mapbox SDK를 사용하였다.<br><br>
 
+<!-- SDK 설치 및 API 발급 -->
+## Mapbox SDK 설치 및 API 발급
 [mapbox SDK](https://docs.mapbox.com/android/maps/overview/#install-the-maps-sdk)를 사용하는 방법은 다음과 같다. <br><br>
 1. [mabox Login 페이지](https://account.mapbox.com/)에 접속하여 로그인을 한뒤 액세스 토큰을 복사한다.<br><br>
 ![기본 공개 토큰](http://cfile253.uf.daum.net/image/99DDDC435CFBCD1A083D1A)<br><br>
@@ -449,8 +451,14 @@ Mapbox.getInstance(this, getString(R.string.access_token));
 ```xml
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
+<!-- 지도 -->
+
+<!-- 길찾기 -->
+
+<!-- 내비게이션 -->
+
 <!-- 테마 변경 -->
-# 테마 변경
+## 테마 변경
 메뉴 바에 **테마 변경**을 클릭하면 총 6가지의 테마가 나와 사용자의 마음대로 변경할 수 있다.<br><br>
 ![테마 변경](http://cfile269.uf.daum.net/image/99D9F84F5CFA2E012EB2CE)<br><br>
 
