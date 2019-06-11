@@ -524,21 +524,43 @@ login 화면 제일 상단에 있는 한국어와 영어 버튼을 클릭하면 
 ```xml
 <string name="Login_button">로그인</string>
 ```
+7. 완성되면 다음과 같다.<br><br>
+![한국어 모드](http://cfile298.uf.daum.net/image/9992A3445CFFD9090427D5)
+![영어 모드](http://cfile253.uf.daum.net/image/999400445CFFD909048C37)
 
 <!-- Speak To Text -->
 # Speak To Text
 
 목적지를 검색할 때 키보드를 치지 않고 음성으로 검색할 수 있는 기능을 구현하기 위하여
-Google의 **Speack To Text** 기능을 사용하였다.<br>
+Google의 **Speak To Text** 기능을 사용하였다.<br>
 메인 화면에서 스피커 모양 버튼을 클릭하면 음성을 인식하는 창이 뜬다.<br>
+```java
+Button sttButton = (Button)findViewById(R.id.btn_stt);
+        sttButton.bringToFront();
+
+        sttButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);//음성 인식 intent생성
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);//데이터 설정
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);//음성 인식 언어 설정
+                try{
+                    startActivityForResult(intent,200); //오류가 발생할 수 있는 코드
+                }catch (ActivityNotFoundException a){
+                    Toast.makeText(getApplicationContext(),"Intent problem", Toast.LENGTH_SHORT).show();//에러 시 수행
+                }
+
+            }
+        });
+```
 ![스피커 버튼](http://cfile257.uf.daum.net/image/995D994A5CFBDE3531FE0A)
 ![stt](http://cfile270.uf.daum.net/image/999AC54E5CFBF67D03AC19)<br><br>
-음성인식 하는 창이 뜨고 '천안역'이라고 말하면 지도에서 바로 천안역까지의 경로를 띄워준다.<br>
+음성인식 하는 창이 뜨고 '천안역'이라고 말하면 지도에서 자동으로 천안역까지의 경로를 띄워준다.<br>
 ![천안역](http://cfile248.uf.daum.net/image/99C3F34E5CFE2AA02BC090)
 ![경로](http://cfile250.uf.daum.net/image/99DBD74D5CFE2AC62A280F)<br><br>
 ```java
 @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) { //음성 인식 결과받음
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 200){
             if(resultCode == RESULT_OK && data != null){
@@ -546,7 +568,7 @@ Google의 **Speack To Text** 기능을 사용하였다.<br>
                 //장소를 AutocompleteSupportFragmene로 가져오기
                 STT.setText(result.get(0)); //result.get(0)=목적지
 
-                
+                //인식한 동시에 폴리라인 실행
                 startButton.setEnabled(true);
                 getPointFromGeoCoder(editText.getText().toString());
                 Point origin = Point.fromLngLat(Lo,La);
