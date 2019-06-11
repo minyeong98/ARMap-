@@ -434,7 +434,7 @@ GUIDE DOG의 지도 및 길찾기 서비스도 mapbox SDK를 사용하였다.<br
 ## Mapbox SDK 설치 및 API 발급
 [mapbox SDK](https://docs.mapbox.com/android/maps/overview/#install-the-maps-sdk)를 사용하는 방법은 다음과 같다. <br><br>
 1. [mabox Login 페이지](https://account.mapbox.com/)에 접속하여 로그인을 한뒤 액세스 토큰을 복사한다.<br><br>
-![기본 공개 토큰](http://cfile253.uf.daum.net/image/99DDDC435CFBCD1A083D1A)<br><br>
+![기본 공개 토큰](http://cfile275.uf.daum.net/image/99B9234E5CFFED7B03971D)<br><br>
 2. 모듈 app의 build.gradle에 있는 **dependencies**에 다음과 같은 최신 종속성행을 추가 해 준다.
 ```
   implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.3.2'
